@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Search from "../assets/search.png"
+import axios from "axios"
 const SearchBar = () => {
+  const [ word, setWord ] = useState("");
+  
+  const searchWord = async (e) => {
+   e.preventDefault();
+    try{
+     const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+
+    if(response.status === 404) {
+        alert(`Could not find the word "${word}"`)
+    }
+    if(response.status === 200){
+        console.log(response);
+    }
+    } catch(err){
+        throw new Error(err);
+    }
+  }
+
   return (
-    <div className="h-32 flex justify-center items-center">
-      <div className="relative w-[80%] xl:w-[30%] md:w-[40] sm:w-[60%]">
+    <div className="h-32 flex flex-col gap-2 justify-center items-center mt-10 ">
+      <form onSubmit={searchWord} className="relative w-[80%] xl:w-[30%] md:w-[40] sm:w-[60%]">
         <input
-          type="text"
+           type="text"
           placeholder="Search for definitions..."
-          className="w-full xl:px-5 xl:py-4 pr-12 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all
-                    md:px-4 md:py-3  px-6 py-4"
+          className="w-full xl:px-5 xl:py-4 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all
+                    md:px-4 md:py-3  px-3.5 py-3"
+          onChange={e => setWord(e.target.value)}
         />
         <button
           type="submit"
@@ -19,7 +39,9 @@ const SearchBar = () => {
             </div>
          
         </button>
-      </div>
+      </form>
+      <p className='text-[#6b7280] text-[10px] text-center sm:text-[12px] md:text-sm'>
+        Try searching for words like "ephemeral," "serendipity," or "eloquent"</p>
     </div>
   )
 }
