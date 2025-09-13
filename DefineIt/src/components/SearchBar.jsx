@@ -1,24 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Search from "../assets/search.png"
 import axios from "axios"
+import { useQuery } from '@tanstack/react-query'
+import useWord from './WordZustand'
 const SearchBar = () => {
   const [ word, setWord ] = useState("");
-  
-  const searchWord = async (e) => {
-   e.preventDefault();
-    try{
-     const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+  const [ submittedWord, setSubmittedWord ] = useState("")
+  const { storeWord } = useWord();
 
-    if(response.status === 404) {
-        alert(`Could not find the word "${word}"`)
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["word", submittedWord],
+    queryFn: () => fetchWord(),
+    enabled: !!submittedWord,
+    retry: false,
+
+  });
+
+  useEffect(() => {
+    storeWord(data)
+  }, [data, storeWord])
+
+  
+
+ 
+
+  
+
+  const fetchWord = async () => {
+    const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${submittedWord}`);
+    return response.data;
     }
-    if(response.status === 200){
-        console.log(response);
-    }
-    } catch(err){
-        throw new Error(err);
-    }
-  }
+
+      
+  const searchWord =  (e) => {
+     e.preventDefault();
+     setSubmittedWord(word);
+  } 
+
+  
 
   return (
     <div className="h-32 flex flex-col gap-2 justify-center items-center mt-10 ">
@@ -42,6 +61,10 @@ const SearchBar = () => {
       </form>
       <p className='text-[#6b7280] text-[10px] text-center sm:text-[12px] md:text-sm'>
         Try searching for words like "ephemeral," "serendipity," or "eloquent"</p>
+
+        { isLoading && <div>Loading....</div> }
+        { error && <div>Could not find the word</div> }
+
     </div>
   )
 }
