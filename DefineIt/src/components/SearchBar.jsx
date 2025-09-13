@@ -6,7 +6,7 @@ import useWord from './WordZustand'
 const SearchBar = () => {
   const [ word, setWord ] = useState("");
   const [ submittedWord, setSubmittedWord ] = useState("")
-  const { storeWord } = useWord();
+  const { storeWord, storeSynonyms, storeAntonyms } = useWord();
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["word", submittedWord],
@@ -18,11 +18,14 @@ const SearchBar = () => {
 
   useEffect(() => {
     storeWord(data)
+    storeSynonyms(data)
+    storeAntonyms(data)
   }, [data, storeWord])
+
+ 
 
   
 
- 
 
   
 
