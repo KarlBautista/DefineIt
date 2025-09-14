@@ -21,7 +21,10 @@ const useWord = create((set) => ({
         return { antonyms: allAntonyms }
     }
 ),
-
+    isLoading: false,
+    isError: false,
+    storedIsLoading: (loading) => set(() => ({ isLoading: loading })),
+    storedError: (error) => set(() => ({ isError: error}))
 
 }));
 
