@@ -6,7 +6,7 @@ import useWord from './WordZustand'
 const SearchBar = () => {
   const [ word, setWord ] = useState("");
   const [ submittedWord, setSubmittedWord ] = useState("")
-  const { storeWord, storeSynonyms, storeAntonyms } = useWord();
+  const { storeWord, storeSynonyms, storeAntonyms, storedIsLoading, storedError } = useWord();
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["word", submittedWord],
@@ -15,11 +15,20 @@ const SearchBar = () => {
     retry: false,
 
   });
+  useEffect(() => {
+    storedIsLoading(isLoading);
+  }, [isLoading])
+
+  useEffect(() => {
+    storedError(error);
+  }, [error])
 
   useEffect(() => {
     storeWord(data)
     storeSynonyms(data)
     storeAntonyms(data)
+  
+    
   }, [data, storeWord])
 
  
@@ -65,8 +74,8 @@ const SearchBar = () => {
       <p className='text-[#6b7280] text-[10px] text-center sm:text-[12px] md:text-sm'>
         Try searching for words like "ephemeral," "serendipity," or "eloquent"</p>
 
-        { isLoading && <div>Loading....</div> }
-        { error && <div>Could not find the word</div> }
+ 
+      
 
     </div>
   )
