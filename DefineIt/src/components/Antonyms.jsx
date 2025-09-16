@@ -1,14 +1,18 @@
 import React from 'react'
 import useWord from './WordZustand'
 const Antonyms = () => {
-     const { antonyms } = useWord();
+     const { antonyms, storeSearchTerm } = useWord();
   
   if (!antonyms || antonyms.length === 0) {
     return null; 
   }
+
+  const searchWord = (word, e) => {
+    e.preventDefault();
+    storeSearchTerm(word);
+  }
   return (
  <div className='w-[85%] md:w-[70%] xl:w-[54%] mx-auto mt-8 mb-6'>
-      {/* Header Section */}
       <div className='mb-6'>
         <div className='flex items-center gap-3 mb-2'>
           <div className='w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full'></div>
@@ -19,8 +23,6 @@ const Antonyms = () => {
         </div>
         <p className='text-gray-600 text-sm ml-6'>Words with opposite meanings</p>
       </div>
-
-      {/* Synonyms Grid */}
       <div className='bg-white rounded-2xl p-6 shadow-lg border border-gray-100'>
         <div className='flex flex-wrap gap-3'>
           {antonyms.map((antonym, index) => (
@@ -30,7 +32,8 @@ const Antonyms = () => {
                          px-4 py-2 rounded-full shadow-sm hover:shadow-md border border-blue-200 
                          transform hover:scale-105 transition-all duration-200 cursor-pointer'
             >
-              <p className='text-blue-700 text-sm font-medium group-hover:text-blue-800 transition-colors'>
+              <p className='text-blue-700 text-sm font-medium group-hover:text-blue-800 transition-colors'
+                  onClick={(e) => storeSearchTerm(antonym)}>
                 {antonym}
               </p>
             </div>

@@ -2,8 +2,7 @@ import React from 'react'
 import Volume from "../assets/medium-volume.png"
 import useWord from './WordZustand'
 const WordData = ({ word, meaning }) => {
-    
-
+  
     console.log(meaning);
 
   return (

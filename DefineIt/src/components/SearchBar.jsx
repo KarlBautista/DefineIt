@@ -6,7 +6,14 @@ import useWord from './WordZustand'
 const SearchBar = () => {
   const [ word, setWord ] = useState("");
   const [ submittedWord, setSubmittedWord ] = useState("")
-  const { storeWord, storeSynonyms, storeAntonyms, storedIsLoading, storedError } = useWord();
+  const { storeWord, storeSynonyms, storeAntonyms, storedIsLoading, storedError, searchTerm } = useWord();
+
+  
+  useEffect(() => {
+    if (searchTerm) {
+      setSubmittedWord(searchTerm);
+    }
+  }, [searchTerm]);
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["word", submittedWord],
@@ -27,16 +34,9 @@ const SearchBar = () => {
     storeWord(data)
     storeSynonyms(data)
     storeAntonyms(data)
-  
-    
   }, [data, storeWord])
 
  
-
-  
-
-
-  
 
   const fetchWord = async () => {
     const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${submittedWord}`);
