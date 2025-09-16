@@ -1,4 +1,5 @@
 import { create } from "zustand"
+import { useQuery } from "@tanstack/react-query";
 
 const useWord = create((set) => ({
     word: null,
@@ -23,8 +24,10 @@ const useWord = create((set) => ({
 ),
     isLoading: false,
     isError: false,
+    searchTerm: "",
     storedIsLoading: (loading) => set(() => ({ isLoading: loading })),
-    storedError: (error) => set(() => ({ isError: error}))
+    storedError: (error) => set(() => ({ isError: error})),
+    storeSearchTerm: (term) => set(() => ({ searchTerm: term })),
 
 }));
 

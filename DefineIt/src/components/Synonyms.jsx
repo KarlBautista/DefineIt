@@ -2,15 +2,22 @@ import React from 'react'
 import useWord from './WordZustand'
 
 const Synonyms = () => {
-  const { synonyms } = useWord();
+  const { synonyms, storeSearchTerm } = useWord();
   
   if (!synonyms || synonyms.length === 0) {
-    return null; // Don't render if no synonyms
+    return null;
   }
+
+  const searchWord = (word, e) => {
+    e.preventDefault();
+    // Use the same search mechanism as SearchBar
+    storeSearchTerm(word);
+  }
+  
+  
   
   return (
     <div className='w-[85%] md:w-[70%] xl:w-[54%] mx-auto mt-8 mb-6'>
-      {/* Header Section */}
       <div className='mb-6'>
         <div className='flex items-center gap-3 mb-2'>
           <div className='w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full'></div>
@@ -32,7 +39,8 @@ const Synonyms = () => {
                          px-4 py-2 rounded-full shadow-sm hover:shadow-md border border-blue-200 
                          transform hover:scale-105 transition-all duration-200 cursor-pointer'
             >
-              <p className='text-blue-700 text-sm font-medium group-hover:text-blue-800 transition-colors'>
+              <p className='text-blue-700 text-sm font-medium group-hover:text-blue-800 transition-colors'
+                 onClick={(e) => searchWord(synonym, e) }>
                 {synonym}
               </p>
             </div>

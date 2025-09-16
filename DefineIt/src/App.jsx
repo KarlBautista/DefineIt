@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -10,6 +10,9 @@ import Home from './pages/Home'
 const queryClient = new QueryClient();
 function App() {
   const { word } = useWord();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [word])
   return (
   <QueryClientProvider client={queryClient}>
     <div className='min-h-screen w-full bg-[#F9FAFB]'>
