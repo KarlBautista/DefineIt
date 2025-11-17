@@ -3,11 +3,12 @@ import Search from "../assets/search.png"
 import axios from "axios"
 import { useQuery } from '@tanstack/react-query'
 import useWord from './WordZustand'
+import { Navigate, useNavigate } from 'react-router-dom'
 const SearchBar = () => {
   const [ word, setWord ] = useState("");
   const [ submittedWord, setSubmittedWord ] = useState("")
   const { storeWord, storeSynonyms, storeAntonyms, storedIsLoading, storedError, searchTerm } = useWord();
-
+  const navigate = useNavigate();
   
   useEffect(() => {
     if (searchTerm) {
@@ -47,6 +48,7 @@ const SearchBar = () => {
   const searchWord =  (e) => {
      e.preventDefault();
      setSubmittedWord(word);
+     navigate("/")
   } 
 
   

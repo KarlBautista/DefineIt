@@ -23,7 +23,7 @@ const Synonyms = () => {
           <div className='w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full'></div>
           <h3 className='text-2xl font-bold text-gray-800'>Synonyms</h3>
           <span className='bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold'>
-            {synonyms.length} found
+            {synonyms.length}
           </span>
         </div>
         <p className='text-gray-600 text-sm ml-6'>Words with similar meanings</p>

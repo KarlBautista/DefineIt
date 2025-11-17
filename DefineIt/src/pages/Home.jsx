@@ -1,14 +1,14 @@
 import React from 'react'
 import WordData from '../components/WordData'
 import useWord from '../components/WordZustand'
-import SearchBar from '../components/SearchBar'
 import WordTitle from '../components/WordTitle'
 import Synonyms from '../components/Synonyms'
 import Antonyms from '../components/Antonyms'
 import LoadingGif from "../assets/loading.gif"
 import NotFound from "../assets/not-found.png"
+
 const Home = () => {
- const { word, isLoading, isError } = useWord();
+ const { word, isLoading, isError, synonyms, antonyms } = useWord();
  
  if(isLoading){
   return  <div className='min-h-[57vh] h-auto w-[100%] flex flex-col justify-center items-center'>
@@ -48,8 +48,9 @@ const Home = () => {
           <span className='text-[#0071FF] animate-bounce ml-1'>It</span>
         </div>
     </div>;
- }
- console.log(word);
+ }  
+ 
+ console.log(synonyms, antonyms)
   return (
     <div className='min-h-[100vh] h-auto w-[100%]'>
         <div className='h-[20%] w-full'>
@@ -58,6 +59,12 @@ const Home = () => {
         {word[0].meanings.map((meaning, index) => {
             return <WordData word={word[0]} meaning={meaning} key={index}/>
         })}
+        { synonyms.length > 0 || antonyms.length > 0 ?
+        <div className='flex justify-center'>
+          <h2 className='text-3xl font-bold text-gray-900'>Thesaurus</h2>
+        </div>
+        : null
+        }
         <div className='w-full h-auto flex justify-center '>
          <Synonyms />
         </div>

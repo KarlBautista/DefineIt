@@ -18,7 +18,7 @@ const Antonyms = () => {
           <div className='w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full'></div>
           <h3 className='text-2xl font-bold text-gray-800'>Antonyms</h3>
           <span className='bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold'>
-            {antonyms.length} found
+            {antonyms.length}
           </span>
         </div>
         <p className='text-gray-600 text-sm ml-6'>Words with opposite meanings</p>
@@ -40,11 +40,11 @@ const Antonyms = () => {
           ))}
         </div>
         
-        {/* Bottom decoration */}
+      
         <div className='mt-6 pt-4 border-t border-gray-100'>
           <div className='flex items-center justify-center gap-2 text-gray-400'>
             <div className='w-2 h-2 bg-blue-100rounded-full animate-pulse'></div>
-            <p className='text-xs font-medium'>Click on any synonym to explore</p>
+            <p className='text-xs font-medium'>Click on any antonyms to explore</p>
             <div className='w-2 h-2 bg-blue-100 rounded-full animate-pulse delay-75'></div>
           </div>
         </div>
