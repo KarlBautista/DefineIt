@@ -13,8 +13,8 @@ const Header = () => {
         </div>
 
         <div className='hidden md:flex gap-8 '>
-            <Link to={"/"}><h3 className={location.pathname === "/" ? "text-[#12161b] cursor-pointer font-bold text-lg" : "text-[#12161b] cursor-pointer"}>Home</h3></Link>
-            <Link to={"/word-of-the-day"}><h3 className={location.pathname === "/word-of-the-day" ? "text-[#12161b] cursor-pointer font-bold text-lg" : "text-[#12161b] cursor-pointer"}>Word of the Day</h3></Link>
+            <Link to={"/"}><h3 className={location.pathname === "/" ? "text-[#2563eb] cursor-pointer font-bold text-lg" : "text-[#12161b] cursor-pointer"}>Home</h3></Link>
+            <Link to={"/word-of-the-day"}><h3 className={location.pathname === "/word-of-the-day" ? "text-[#2563eb] cursor-pointer font-bold text-lg" : "text-[#12161b] cursor-pointer"}>Word of the Day</h3></Link>
         
         </div>
         <div className='md:hidden text-[#4b5563] text-2xl' onClick={(e) => setShowDropdown(!showDropdown)}>

@@ -79,7 +79,7 @@ const fetchWord = async () => {
 
   return (
     <div className='w-full h-[60vh] flex flex-col items-center justify-center p-5'>
-        <div className='flex items-center gap-3 mb-4 absolute top-90 flex-col'>
+        <div className='flex items-center gap-3 mb-4 absolute top-70 md:top-90 flex-col'>
             <div className='flex gap-2'>
                <svg xmlns="http://www.w3.org/2000/svg" className='w-8 h-8 text-yellow-400' viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" role="img" aria-label="Word of the Day icon">
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.163c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.176 0l-3.37 2.448c-.785.57-1.84-.197-1.54-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.06 9.384c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69L9.05 2.927z" />

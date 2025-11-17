@@ -10,7 +10,7 @@ const Synonyms = () => {
 
   const searchWord = (word, e) => {
     e.preventDefault();
-    // Use the same search mechanism as SearchBar
+   
     storeSearchTerm(word);
   }
   
@@ -29,7 +29,7 @@ const Synonyms = () => {
         <p className='text-gray-600 text-sm ml-6'>Words with similar meanings</p>
       </div>
 
-      {/* Synonyms Grid */}
+   
       <div className='bg-white rounded-2xl p-6 shadow-lg border border-gray-100'>
         <div className='flex flex-wrap gap-3'>
           {synonyms.map((synonym, index) => (
@@ -47,7 +47,7 @@ const Synonyms = () => {
           ))}
         </div>
         
-        {/* Bottom decoration */}
+     
         <div className='mt-6 pt-4 border-t border-gray-100'>
           <div className='flex items-center justify-center gap-2 text-gray-400'>
             <div className='w-2 h-2 bg-blue-100rounded-full animate-pulse'></div>
